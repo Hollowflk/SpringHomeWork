@@ -1,5 +1,6 @@
 package com.Neostudy.SpringHomeWork.Controller;
 
+import com.Neostudy.SpringHomeWork.Entities.Author;
 import com.Neostudy.SpringHomeWork.Entities.Book;
 import com.Neostudy.SpringHomeWork.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ public class BookController {
     @GetMapping("/all")
     public List<Book> findAll(){
         return bookService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public List<Author> getAuthor(@PathVariable Integer id){
+        return bookService.getAuthors(id);
     }
 
 }

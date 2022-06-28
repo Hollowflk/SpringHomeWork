@@ -1,41 +1,40 @@
 package com.Neostudy.SpringHomeWork.Entities;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString
-@Table(name = "books")
-public class Book {
-
+@Table(name = "author")
+public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "name")
+    private String name;
+
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "author_books",
-            joinColumns = @JoinColumn(name = "books_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id")
+            joinColumns = @JoinColumn(name = "author_id"),
+            inverseJoinColumns = @JoinColumn(name = "books_id")
     )
-    private List<Author> authors;
+    private List<Book> books;
 
-    public List<Author> getAuthors(){
-        return authors;
+    public List<Book> getBooks(){
+        return books;
     }
-
 }

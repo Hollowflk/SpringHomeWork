@@ -7,22 +7,22 @@ import com.Neostudy.SpringHomeWork.Repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class BookService {
-
-    private final BookRepository bookRepository;
+public class AuthorService {
 
     private final AuthorRepository authorRepository;
 
-    public List<Book> findAll(){
-        return bookRepository.findAll();
+    public List<Author> findAll(){
+        return authorRepository.findAll();
     }
 
-    public List<Author> getAuthors(Integer id){
-        Book book = bookRepository.findById(id).orElseThrow();
-        return book.getAuthors();
+    public List<Book> getBooks(Integer id){
+        Author author = authorRepository.findById(id).orElseThrow();
+        return author.getBooks();
     }
 }
