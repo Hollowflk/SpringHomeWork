@@ -30,4 +30,9 @@ public class BookController {
         return bookService.getAuthors(id);
     }
 
+    @GetMapping("/price/{id}")
+    public Integer priceBooks(@PathVariable Integer id){
+        return bookService.priceBooks(id);
+    }
+
 }

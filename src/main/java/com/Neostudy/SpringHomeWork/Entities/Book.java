@@ -25,6 +25,9 @@ public class Book {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "price")
+    private Integer price;
+
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

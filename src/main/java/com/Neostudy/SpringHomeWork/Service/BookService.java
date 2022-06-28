@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +18,8 @@ public class BookService {
 
     private final AuthorRepository authorRepository;
 
+    private final AuthorService authorService;
+
     public List<Book> findAll(){
         return bookRepository.findAll();
     }
@@ -24,5 +27,14 @@ public class BookService {
     public List<Author> getAuthors(Integer id){
         Book book = bookRepository.findById(id).orElseThrow();
         return book.getAuthors();
+    }
+
+    public Integer priceBooks(Integer id){
+        Integer sum = 0;
+        List<Book> books = authorService.getBooks(id);
+        for(Book book : books){
+            sum = sum + book.getPrice();
+        }
+        return sum;
     }
 }
